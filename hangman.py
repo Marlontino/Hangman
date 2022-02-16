@@ -52,6 +52,13 @@ def display_stages(lives_left):
     ]
     return stages[abs(lives_left-6)]
 
+def restart():
+    user_input = input('\nPlay again?(y/n): ')
+    if user_input.lower() == 'y':
+        hangman()
+    else:
+        sys.exit()
+
 def hangman():
     word = get_valid_word(words)
     word_letters = set(word) # letters in the word
@@ -92,10 +99,11 @@ def hangman():
     if lives == 0:
         print(display_stages(lives))
         print('You died, sorry. The word was', word)
-        sys.exit()
+        restart()
 
     else:
         print('You guessed the word!')
+        restart()
 
 if __name__ == '__main__':
     main()
